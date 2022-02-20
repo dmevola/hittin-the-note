@@ -29,6 +29,13 @@ module.exports = app => {
             console.log("Deleted note id " +req.params.id);
         });
 
+        // deletes a note by id
+        app.delete("/api/notes/:id", function(req, res) {
+            notes.splice(req.params.id, 1);
+            updateDb();
+            console.log("Deleted note with id "+req.params.id);
+        });
+
         //display notes at /notes
         app.get('/notes', function(req, res) {
             res.sendFile(path.join(__dirname, "../public/notes.html"));
